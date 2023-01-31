@@ -26,12 +26,13 @@ except ValueError:
     print('Введены некорректные данные')
 
 """
-Второе исключение - обрабатываем ситуацию деления на 0
+Второе исключение включаем в функцию - обрабатываем ситуацию деления на 0
 """
-try:
-    rezult = num1 / num2
-except ZeroDivisionError:
-    rezult = 0
-    print('Вы что? Пытаетесь делить на 0!')
-
-print(f'{rezult:0.2f}')
+def division(a, b):
+    try:
+        r = a / b
+    except ZeroDivisionError:
+        r = 0
+        print('Вы что? Пытаетесь делить на 0!')
+    return r
+print(f'{division(num1, num2):0.2f}')
