@@ -13,3 +13,25 @@ Process finished with exit code 0
 1.0
 Process finished with exit code 0
 """
+
+"""
+Первое исключение - исключаем ошибку ввода некорректного значение
+"""
+try:
+    num1 = float(input('Введите первое число: '))
+    num2 = float(input('Введите второе число: '))
+except ValueError:
+    num1 = 1
+    num2 = 1
+    print('Введены некорректные данные')
+
+"""
+Второе исключение - обрабатываем ситуацию деления на 0
+"""
+try:
+    rezult = num1 / num2
+except ZeroDivisionError:
+    rezult = 0
+    print('Вы что? Пытаетесь делить на 0!')
+
+print(f'{rezult:0.2f}')
