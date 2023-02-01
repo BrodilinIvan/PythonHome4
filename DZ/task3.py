@@ -23,7 +23,7 @@ def func_sum1(a1, a2, a3):
     lst.append(a3)
     lst.sort(reverse=True)  # Первые два будут самыми большими, вдруг захотим
     # добавить еще елементов
-    return (lst[0] + lst[1])
+    return lst[0] + lst[1]
 
 
 print(f'Решение с функцией sort(): {func_sum1(num1, num2, num3)}')
@@ -31,11 +31,11 @@ print(f'Решение с функцией sort(): {func_sum1(num1, num2, num3)}
 
 def func_sum2(a1, a2, a3):
     if a1 <= a2 and a1 <= a3:
-        return (a2 + a3)
+        return a2 + a3
     elif a2 <= a1 and a2 <= a3:
-        return (a1 + a3)
+        return a1 + a3
     else:
-        return (a1 + a2)
+        return a1 + a2
 
 
 print(f'Решение без функции sort(): {func_sum2(num1, num2, num3)}')
