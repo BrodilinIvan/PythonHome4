@@ -30,7 +30,15 @@ while True:
 
 
 def func_pow(a1, a2):
-    return (a1 ** a2)
+    a2 = abs(a2)
+    i = 1
+    while i < a2:
+        if a2 == 1:
+            break
+        else:
+            a1 *= a1
+        i += 1
+    return 1 / a1
 
 
 print(f'{func_pow(num1, num2):0.4f}')
