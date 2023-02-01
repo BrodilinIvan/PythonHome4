@@ -3,36 +3,51 @@
 с помощью модуля timeit, опишите результат
 """
 
-import timeit
+from timeit import timeit
+
 
 def func1(a, b):
-    print(f'Через выражение **: {a ** b}')
+    return a ** b
+
 
 def func2(a, b):
-    print(f'Через встроенную функцию pow: {pow(a, b)}')
+    return pow(a, b)
 
-print('Через функции:')
 
-start_time = timeit.default_timer()
-func1(20, 5)
-print(timeit.default_timer() - start_time)
+x1 = lambda a, b: a ** b
+x2 = lambda a, b: pow(a, b)
 
-start_time = timeit.default_timer()
-func2(20, 5)
-print(timeit.default_timer() - start_time)
+def func_pow(a, b):
+    i = 1
+    while i < b:
+        if b == 1:
+            break
+        else:
+            a *= a
+        i += 1
+    return a
 
-print('Без функций:')
+print('Через именные функции:')
 
-start_time = timeit.default_timer()
-print(f'Через выражение **: {20 ** 5}')
-print(timeit.default_timer() - start_time)
+print(timeit("func1(20, 5)", setup="from __main__ import func1", number=10000))
+print(timeit("func2(20, 5)", setup="from __main__ import func2", number=10000))
 
-start_time = timeit.default_timer()
-print(f'Через встроенную функцию pow: {pow(20, 5)}')
-print(timeit.default_timer() - start_time)
+print('Через анонимные функции')
+
+print(timeit("x1(20, 5)", setup="from __main__ import x1", number=10000))
+print(timeit("x2(20, 5)", setup="from __main__ import x2", number=10000))
+
+print('Через встроенные функций:')
+
+print(timeit('20 ** 5', number=10000))
+print(timeit('pow(20, 5)', number=10000))
+
+print('Через цикл:')
+
+print(timeit("func_pow(20, 5)",
+             setup="from __main__ import func_pow", number=10000))
 
 """
-Расчеты показали, что разница по времени несущественная если стоит выбор 
-использования вычисления в формате x ** y или pow(x, y), а использование 
-функций при данных вычислениях снижает время многократно!
+Расчеты показали, что использование функций при данных вычислениях снижает 
+время многократно!
 """
